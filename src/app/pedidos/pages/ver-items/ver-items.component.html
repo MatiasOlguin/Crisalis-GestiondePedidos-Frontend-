@@ -1,0 +1,50 @@
+<div class="container-ver-items animate__animated animate__fadeIn">
+    <div class="ofertas">
+        <div class="opciones">
+            <div (click)="clickProductos()" class="opcion producto">Productos</div>
+            <div (click)="clickServicios()" class="opcion servicio">Servicios</div>
+        </div>
+
+        <div *ngIf="showProductos; else divServicios" class="container-ofertas animate__animated animate__fadeIn">
+            <app-oferta-producto (onEnviarItem)="agregarItem($event)" *ngFor="let producto of productos"
+                [producto]="producto"></app-oferta-producto>
+        </div>
+
+        <ng-template #divServicios>
+            <div class="container-ofertas animate__animated animate__fadeIn">
+                <app-oferta-servicio (onEnviarItem)="agregarItem($event)" *ngFor="let servicio of servicios"
+                    [servicio]="servicio"></app-oferta-servicio>
+            </div>
+        </ng-template>
+    </div>
+
+    <div class="pedido">
+        <div class="cliente">
+            <h4>Cliente : {{getPedido().cliente.nombreCompleto}}</h4>
+        </div>
+
+        <div class="container-items">
+            <app-item (onEliminar)="eliminarItem($event)" *ngFor="let item of getPedido().items" [item]="item"></app-item>
+        </div>
+        
+        <div class="resultados">
+            <div *ngIf="getSubtotal() != 0" class="subtotal animate__animated animate__fadeIn">
+                <p>Subtotal:</p>
+                <p>${{getSubtotal()}}</p>
+            </div>
+            <div *ngIf="getImpuestos() != 0" class="impuestos animate__animated animate__fadeIn">
+                <p>+ Impuestos (IVA + IIBB):</p>
+                <p>${{getImpuestos()}}</p>
+            </div>
+            <div *ngIf="getCargoSoporte() != 0" class="descuento animate__animated animate__fadeIn">
+                <p>+ Cargo Soporte:</p>
+                <p>${{getCargoSoporte()}}</p>
+            </div>
+            <div class="total">
+                <p>Total:</p>
+                <p>${{getTotal()}}</p>
+            </div>
+        </div>
+        <button (click)="enviarPedido()" class="enviar">Crear pedido</button>
+    </div>
+</div>

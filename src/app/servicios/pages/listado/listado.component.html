@@ -1,0 +1,26 @@
+<div class="contenedor-tabla animate__animated animate__fadeIn">
+    <table [cellSpacing]="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descripcion</th>
+                <th>Tipo</th>
+                <th>Monto Base</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let servicio of servicios" class="animate__animated animate__fadeIn">
+                <td>{{ servicio.id }}</td>
+                <td>{{ servicio.descripcion }}</td>
+                <td>{{ servicio.tipo }}</td>
+                <td>${{ servicio.montoBase }}</td>
+                <td class="accion">
+                    <div class="acciones">
+                        <img [routerLink]="['/servicios',servicio.id]" class="ver" src="assets/ojo.svg" />
+                        <img [routerLink]="['/servicios/editar',servicio.id]" class="ver" src="assets/editar.svg" />
+                        <img (click)="borrar(servicio.id)" class="ver" src="assets/eliminar.svg" />
+                    </div>
+                </td>
+    </table>
+</div>

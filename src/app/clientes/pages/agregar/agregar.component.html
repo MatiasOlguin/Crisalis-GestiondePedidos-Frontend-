@@ -1,0 +1,29 @@
+<div class="agregar-container">
+    <div class="card animate__animated animate__fadeIn">
+        <h1 *ngIf="!cliente.id; else actualizar">Nuevo cliente</h1>
+
+        <ng-template #actualizar>
+            <h1>Actualizar cliente</h1>
+        </ng-template>
+        <form>
+            <div class="data">
+                <label>NOMBRE</label>
+                <input [(ngModel)]="cliente.nombre" name="nombre" type="text">
+            </div>
+
+            <div class="data">
+                <label>APELLIDO</label>
+                <input [(ngModel)]="cliente.apellido" name="apellido" type="text">
+            </div>
+
+            <div class="data">
+                <label>DNI</label>
+                <input [(ngModel)]="cliente.dni" name="dni" type="text">
+            </div>
+
+            <div class="btn">
+                <button (click)="guardar()" type="submit">Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>

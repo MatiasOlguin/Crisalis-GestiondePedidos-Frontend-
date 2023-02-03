@@ -1,0 +1,37 @@
+<div class="card-producto animate__animated animate__fadeIn">
+
+
+    <h1 *ngIf="!producto.id; else actualizar">Nuevo producto</h1>
+
+    <ng-template #actualizar><h1>Actualizar producto</h1></ng-template>
+    <form>
+        <div class="data">
+            <label>DESCRIPCION</label>
+            <input [(ngModel)]="producto.descripcion" name="descripcion" type="text">
+        </div>
+        
+        <div class="data">
+            <label>MARCA</label>
+            <input [(ngModel)]="producto.marca" name="marca" type="text">
+        </div>
+
+        <div class="data">
+            <label>MODELO</label>
+            <input [(ngModel)]="producto.modelo" name="modelo" type="text">
+        </div>
+
+        <div class="data">
+            <label>CANTIDAD</label>
+            <input [(ngModel)]="producto.cantidad" name="cantidad" type="number">
+        </div>
+
+        <div class="data">
+            <label>MONTO BASE</label>
+            <input [(ngModel)]="producto.montoBase" name="montoBase" type="number">
+        </div>
+
+        <div class="btn">
+            <button (click)="guardar()" type="submit">Guardar</button>
+        </div>
+    </form>
+</div>

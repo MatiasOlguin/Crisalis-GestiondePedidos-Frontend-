@@ -1,0 +1,103 @@
+.item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 30vw;
+  height: 1.5em;
+  background-color: rgb(59, 59, 59);
+  border-radius: 1em;
+  margin: 0.3em 0;
+  color: gray;
+  cursor: pointer;
+}
+.item-content span {
+  color: whitesmoke;
+  margin-left: 0.3em;
+}
+
+.monto {
+  color: whitesmoke;
+  margin-right: 0.3em;
+}
+
+.acciones {
+  display: flex;
+  height: 1.5em;
+}
+
+.opcion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 2em;
+  border-radius: 0 1em 1em 0;
+}
+
+.opcion img {
+  height: 0.6em;
+}
+
+.cantidad {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.5em;
+}
+
+.ok {
+  height: 0.6em;
+}
+
+.garantia,
+.cargo {
+  display: flex;
+  justify-content: space-between;
+  background-color: rgb(24, 24, 24);
+}
+
+.garantia p {
+  margin-left: 0.3em;
+}
+
+.cargoSoporte {
+  display: flex;
+  width: 14em;
+  overflow: hidden;
+}
+
+.cargoSoporte p {
+  white-space: nowrap;
+  margin-left: 0.3em;
+}
+
+.inputCargo {
+  font-family: "Poppins", sans-serif;
+  color: whitesmoke;
+  background: none;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid whitesmoke;
+  min-width: 0;
+  max-width: 100%;
+  text-align: center;
+}
+
+.inputCargo:focus {
+  outline: none;
+  border: none;
+}
+
+.eliminar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(45deg, rgb(109, 6, 6), red);
+  height: 100%;
+  width: 2em;
+  border-radius: 0 1em 1em 0;
+}
+
+.eliminar img {
+  height: 1em;
+}

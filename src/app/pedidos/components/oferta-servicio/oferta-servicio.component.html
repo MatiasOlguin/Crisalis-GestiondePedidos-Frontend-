@@ -1,0 +1,8 @@
+<div [ngClass]="{'clicked' : clicked}" (click)="enviar()" class="items-seleccionar">
+    <div class="caracteristicas">
+        <h5>Servicio</h5>
+        <p>{{servicio.descripcion}}</p>
+        <p>Tipo: {{servicio.tipo}} </p>
+        <p>Monto: ${{servicio.montoBase}}</p>
+    </div>
+</div>

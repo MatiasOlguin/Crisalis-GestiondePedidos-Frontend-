@@ -1,0 +1,25 @@
+<!-- <div *ngIf="!verEmpresa; else divEmpresa">
+</div>
+
+<ng-template #divEmpresa>
+    <div class="card animate__animated animate__fadeIn">
+        <div style="display: flex; flex-direction: row-reverse;"><img style="width: 2em;" routerLink="/empresas/listado"
+                class="ver" src="assets/eliminar.svg" /></div>
+        <h1> {{ verEmpresa.razonSocial }}</h1>
+        <h3> {{ verEmpresa.inicioActividades | date: 'd/M/yyyy' }}</h3>
+        <hr>
+        <p>CUIT : {{ verEmpresa.cuit}}</p>
+        <p>Creado : {{ verEmpresa.createAt | date: 'd/M/yyyy' }}</p>
+        <p>Empleados:</p>
+        <div *ngIf="verEmpresa.empleados.length == 0; else divLista">La empresa no tiene empleados registrados</div>
+
+        <ng-template #divLista>
+            <div *ngFor="let empleado of verEmpresa.empleados">
+                <div style="display: flex; align-items: center;">
+                    <p>{{empleado.nombreCompleto}}</p>
+                    <img [routerLink]="['/clientes',empleado.id]" class="ver" src="assets/ojo.svg" />
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</ng-template> -->

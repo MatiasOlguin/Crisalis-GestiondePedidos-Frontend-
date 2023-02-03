@@ -1,0 +1,31 @@
+<div class="contenedor-tabla animate__animated animate__fadeIn">
+    <table [cellSpacing]="0">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Razón Social</th>
+                <th>CUIT</th>
+                <th>Inicio de actividades</th>
+                <th>Creado</th>
+                <th>Empleados</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let empresa of empresas" class="animate__animated animate__fadeIn">
+                <td>{{ empresa.id }}</td>
+                <td>{{ empresa.razonSocial }}</td>
+                <td>{{ empresa.cuit }}</td>
+                <td>{{ empresa.inicioActividades | date: 'd/M/yyyy' }}</td>
+                <td>{{ empresa.createAt | date: 'd/M/yyyy' }}</td>
+                <td>{{ empresa.empleados.length}}</td>
+                <td class="accion">
+                    <div class="acciones">
+                        <img [routerLink]="['/empresas',empresa.id]" class="ver" src="assets/ojo.svg" />
+                        <img [routerLink]="['/empresas/editar',empresa.id]" class="ver" src="assets/editar.svg" />
+                        <img (click)="borrar(empresa.id)" class="ver" src="assets/eliminar.svg" />
+                    </div>
+                </td>
+            </tr>
+    </table>
+</div>

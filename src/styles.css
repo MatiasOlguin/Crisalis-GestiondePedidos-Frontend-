@@ -1,1 +1,118 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap");
+
+
+body {
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    color: white;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    outline: none;
+    overflow-x:hidden;
+    overflow-y:hidden;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container-home{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    flex: wrap;
+}
+
+main{
+    width: 80vw;
+    height: 100vh;
+}
+
+.opciones{
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+    height: 15vh;
+    align-items: center;
+}
+
+.agregar{
+    width: 3em;
+    cursor: pointer;
+}
+
+.logout{
+    width: 2em;
+    margin-right: 0.5em;
+}
+
+.card {
+    background-color: gray;
+    border-radius: 2em;
+    width: 40vw;
+    height: 70vh;
+    padding: 5vh 5vh;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  form div {
+    margin-top: 1em;
+  }
+  form .data label {
+    font-size: 1.1em;
+  }
+  
+  form .data input {
+    height: 2em;
+    width: 100%;
+    font-size: 1.1em;
+    border: none;
+  }
+  
+  form .data input:focus {
+    border-color: #56d8e4;
+    border-bottom-width: 0.25em;
+  }
+  
+  .btn {
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    height: 2em;
+    width: 100%;
+  }
+  
+  .btn button {
+    font-size: 1em;
+    color: white;
+    width: 20em;
+    height: 100%;
+    border: none;
+    background-image: linear-gradient(to right, #0d00ff, #56d8e4, #0d00ff);
+    background-size: 40em;
+    transition: all 2s;
+    cursor: pointer;
+  }
+  
+  .btn button:hover {
+    background-position: -20em;
+    transition: all 2s;
+  }
+
+  .ver{
+    width: 2em;
+    margin: 0.5em;
+    cursor: pointer;
+  }
+
+  hr{
+    color:white;
+    margin: 1em 0;
+  }

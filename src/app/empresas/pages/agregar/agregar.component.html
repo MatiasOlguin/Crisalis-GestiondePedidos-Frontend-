@@ -1,0 +1,27 @@
+<div class="card animate__animated animate__fadeIn">
+
+
+    <h1 *ngIf="!empresa.id; else actualizar">Nueva empresa</h1>
+
+    <ng-template #actualizar><h1>Actualizar empresa</h1></ng-template>
+    <form>
+        <div class="data">
+            <label>RAZÓN SOCIAL</label>
+            <input [(ngModel)]="empresa.razonSocial" name="nombre" type="text">
+        </div>
+        
+        <div class="data">
+            <label>INICIO DE ACTIVIDADES</label>
+            <input [(ngModel)]="empresa.inicioActividades" name="inicioActividades" type="text">
+        </div>
+
+        <div class="data">
+            <label>CUIT</label>
+            <input [(ngModel)]="empresa.cuit" name="cuit" type="text">
+        </div>
+
+        <div class="btn">
+            <button (click)="guardar()" type="submit">Guardar</button>
+        </div>
+    </form>
+</div>

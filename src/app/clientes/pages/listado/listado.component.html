@@ -1,0 +1,35 @@
+<div class="contenedor-tabla animate__animated animate__fadeIn">
+    <table [cellSpacing]="0">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>DNI</th>
+                <th>Creado</th>
+                <th>Empresa</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cliente of clientes" class="animate__animated animate__fadeIn">
+                <td>{{ cliente.id }}</td>
+                <td>{{ cliente.nombre }}</td>
+                <td>{{ cliente.apellido }}</td>
+                <td>{{ cliente.dni }}</td>
+                <td>{{ cliente.createAt | date: 'd/M/yyyy' }}</td>
+                <td style="cursor: pointer;" 
+                [routerLink]="['/empresas',cliente.empresa.id]" 
+                *ngIf="cliente.empresa; else templateElse">{{cliente.empresa.razonSocial}}</td>
+                <ng-template #templateElse>
+                    <td>No aplica</td>
+                </ng-template>
+
+                <td class="accion">
+                    <div class="acciones">
+                        <img [routerLink]="['/clientes',cliente.id]" class="ver" src="assets/ojo.svg" />
+                        <img [routerLink]="['/clientes/editar',cliente.id]" class="ver" src="assets/editar.svg" />
+                        <img (click)="borrar(cliente.id)" class="ver" src="assets/eliminar.svg" />
+                    </div>
+    </table>
+</div>

@@ -1,0 +1,33 @@
+<div class="contenedor-tabla animate__animated animate__fadeIn">
+    <table [cellSpacing]="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Creado</th>
+                <th>Cliente</th>
+                <th>Estado</th>
+                <th>Items</th>
+                <th>Descuento</th>
+                <th>Monto total</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let pedido of pedidos" class="animate__animated animate__fadeIn">
+                <td>{{ pedido.id }}</td>
+                <td>{{ pedido.createAt | date: 'd/M/yyyy' }}</td>
+                <td>{{ pedido.cliente.nombreCompleto}}</td>
+                <td>{{ pedido.estado }}</td>
+                <td>{{ pedido.items.length }}</td>
+                <td>-</td>
+                <td>${{ pedido.total}}</td>
+                <td class="accion">
+                    <div class="acciones">
+                        <img [routerLink]="['/pedidos',pedido.id]" class="ver" src="assets/ojo.svg" />
+                        <img [routerLink]="['/pedidos/editar',pedido.id]" class="ver" src="assets/editar.svg" />
+                        <img (click)="borrar(pedido.id)" class="ver" src="assets/eliminar.svg" />
+                    </div>
+                </td>
+            </tr>
+    </table>
+</div>

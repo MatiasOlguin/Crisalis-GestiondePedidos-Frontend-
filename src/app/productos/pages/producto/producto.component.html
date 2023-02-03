@@ -1,0 +1,15 @@
+<div *ngIf="!verProducto; else divProducto">
+</div>
+
+<ng-template #divProducto>
+    <div class="card-producto animate__animated animate__fadeIn">
+        <div style="display: flex; flex-direction: row-reverse;"><img
+            style="width: 2em;"
+            routerLink="/productos/listado" class="ver" src="assets/eliminar.svg" /></div>
+        <h1> {{ verProducto.descripcion }}</h1>
+        <h3> {{ verProducto.marca }} - {{ verProducto.modelo }}</h3>
+        <hr>
+        <p>Monto Base : ${{ verProducto.montoBase}}</p>
+        <p>Cantidad : {{ verProducto.cantidad }}</p>
+    </div>
+</ng-template>

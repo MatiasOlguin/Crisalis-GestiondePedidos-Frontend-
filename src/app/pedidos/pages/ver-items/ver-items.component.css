@@ -1,0 +1,133 @@
+.container-ver-items {
+  display: flex;
+  width: 80vw;
+}
+.ofertas {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background-color: rgb(58, 58, 58);
+  border-radius: 2em;
+  width: 45vw;
+  height: 80vh;
+  margin-right: 2vw;
+}
+
+.opciones {
+  display: flex;
+  width: 45vw;
+  height: 10vh;
+  border-radius: 2em 2em 0 0;
+  user-select: none;
+}
+
+.opcion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 70%;
+  border-radius: 2em;
+  margin: 0 2%;
+  cursor: pointer;
+  transition: all 2s;
+}
+
+.producto {
+  background-color: #56d8e4;
+}
+
+.producto:hover {
+  background-color: #0d00ff;
+}
+
+.servicio {
+  background-color: #0d00ff;
+}
+
+.servicio:hover {
+  background-color: #56d8e4;
+}
+
+.container-ofertas {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 45vw;
+  height: 66vh;
+  scrollbar-width: none;
+  overflow: auto;
+}
+
+.pedido {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid gray;
+  border-radius: 2em;
+  width: 30vw;
+  height: 78vh;
+  padding: 1vh 1vw;
+  user-select: none;
+}
+
+.cliente {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 6vh;
+}
+
+.container-items {
+  display: flex;
+  width: 30vw;
+  height: 100%;
+  flex-direction: column;
+  scrollbar-width: none;
+  overflow: auto;
+}
+
+.container-items::-webkit-scrollbar {
+  width: 0;
+}
+
+.resultados {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30vw;
+  height: 18vh;
+}
+
+.subtotal,
+.descuento,
+.impuestos {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 3.5vh;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 4vh;
+  font-weight: bold;
+  width: 100%;
+  height: 7vh;
+}
+
+.enviar {
+  width: 50%;
+  height: 4vh;
+  border-radius: 1em;
+  background-color: whitesmoke;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  margin: 1em 0;
+}

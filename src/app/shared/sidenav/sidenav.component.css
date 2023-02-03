@@ -1,0 +1,47 @@
+.sidenav{
+    width: 20vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.item{
+    background-color: black;
+    border-radius: 2em;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1vh;
+    width: 18vw;
+    height: 2em;
+    transition: all 1s;
+    cursor: pointer;
+    font-size: 1.3em;
+    padding-left: 5%;
+}
+
+.item:hover{
+    background-color: gray;
+}
+
+.activo{
+    background-color: gray;
+}
+
+.titulo{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    height: 15vh;
+}
+
+.titulo img{
+    height:2em;
+    margin-right: 1em;
+}
+
+.titulo h1{
+    font-size: 1.3em;
+    line-height: 0;
+    white-space:nowrap;
+}

@@ -1,0 +1,24 @@
+.cantidad{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    width: 5vw;
+    height: 100%;
+}
+
+.signo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0 0.5em;
+    cursor: pointer;
+    user-select: none;
+}
+
+p{
+    width: 1.5em;
+    text-align: center;
+    user-select: none;
+}

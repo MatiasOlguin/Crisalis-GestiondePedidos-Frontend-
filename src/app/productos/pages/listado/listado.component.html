@@ -1,0 +1,29 @@
+<div class="contenedor-tabla animate__animated animate__fadeIn">
+    <table [cellSpacing]="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descripcion</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Cantidad</th>
+                <th>Monto Base</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let producto of productos" class="animate__animated animate__fadeIn">
+                <td>{{ producto.id }}</td>
+                <td>{{ producto.descripcion }}</td>
+                <td>{{ producto.marca }}</td>
+                <td>{{ producto.modelo }}</td>
+                <td>{{ producto.cantidad }}</td>
+                <td>${{ producto.montoBase }}</td>
+                <td class="accion">
+                    <div class="acciones">
+                        <img [routerLink]="['/productos',producto.id]" class="ver" src="assets/ojo.svg" />
+                        <img [routerLink]="['/productos/editar',producto.id]" class="ver" src="assets/editar.svg" />
+                        <img (click)="borrar(producto.id)" class="ver" src="assets/eliminar.svg" />
+                    </div>
+    </table>
+</div>

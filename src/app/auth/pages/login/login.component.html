@@ -1,0 +1,30 @@
+<div class="full-width">
+
+<div class="container">
+    <div class="bienvenido">
+      <img src="assets/logo.svg">
+      <h3>Bienvenido</h3>
+      <h1>Inicie sesión</h1>
+    </div>
+  
+  
+    <form>
+      <div class="data">
+        <label>USUARIO</label>
+        <input [(ngModel)]="this.username" type="text" name="username" required autofocus autocomplete="off"/>
+      </div>
+      <div class="data">
+        <label>CONTRASEÑA</label>
+        <input [(ngModel)]="this.password" type="password" name="password" required/>
+      </div>
+  
+      <div class="btn">
+        <button (click)="clicked()">INICIAR SESIÓN</button>
+      </div>
+    </form>
+
+    <div class="registrar">
+        <button>Registrate</button>
+    </div>
+  </div>
+</div>

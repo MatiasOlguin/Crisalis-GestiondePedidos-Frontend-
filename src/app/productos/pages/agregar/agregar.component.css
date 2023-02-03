@@ -1,0 +1,57 @@
+.card-producto {
+  background-color: gray;
+  border-radius: 2em;
+  width: 40vw;
+  height: 70vh;
+  padding: 5vh 5vh;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+form div {
+  margin-top: 0.5em;
+}
+form .data label {
+  font-size: 1.1em;
+}
+
+form .data input {
+  height: 2em;
+  width: 100%;
+  font-size: 1.1em;
+  border: none;
+}
+
+form .data input:focus {
+  border-color: #56d8e4;
+  border-bottom-width: 0.25em;
+}
+
+.btn {
+  margin-top: 2em;
+  display: flex;
+  justify-content: center;
+  height: 2em;
+  width: 100%;
+}
+
+.btn button {
+  font-size: 1em;
+  color: white;
+  width: 20em;
+  height: 100%;
+  border: none;
+  background-image: linear-gradient(to right, #0d00ff, #56d8e4, #0d00ff);
+  background-size: 40em;
+  transition: all 2s;
+  cursor: pointer;
+}
+
+.btn button:hover {
+  background-position: -20em;
+  transition: all 2s;
+}

@@ -1,0 +1,25 @@
+.contenedor-tabla{
+	display: flex;
+	width: 80vw;
+	height: 85vh;
+	overflow-y: scroll
+}
+
+table {
+	width: 100%;
+	height: fit-content;
+}
+
+table tr{
+    text-align: center;
+}
+
+th, td {
+	padding: 0.5em;
+	background-color:rgb(37, 37, 37);
+}
+
+thead th{
+	background-color: #0d00ff;
+}
+

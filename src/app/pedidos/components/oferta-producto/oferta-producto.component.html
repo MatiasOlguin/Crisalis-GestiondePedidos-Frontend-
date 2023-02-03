@@ -1,0 +1,10 @@
+<div [ngClass]="{'sinStock' : sinStock,'clicked' : clicked}" class="items-seleccionar">
+    <div (click)="enviar()" class="caracteristicas">
+        <h5>Producto</h5>
+        <p>{{producto.descripcion}}</p>
+        <p>Marca: {{producto.marca}}</p>
+        <p>Modelo: {{producto.modelo}}</p>
+        <p>Monto: ${{producto.montoBase}}</p>
+    </div>
+    <app-stock #hijo [max]="producto.cantidad"></app-stock>
+</div>

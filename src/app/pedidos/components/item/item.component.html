@@ -1,0 +1,53 @@
+<div *ngIf="item.producto; else divServicio" class="item-content animate__animated animate__fadeIn">
+    <p><span>{{item.cantidad}}</span> x {{item.producto.descripcion}}
+        - <span>{{item.producto.marca}} {{item.producto.modelo}}</span></p>
+
+    <div class="acciones">
+        <p class="monto">$ {{item.producto.montoBase * item.cantidad}}</p>
+        <div (click)="mostrarGarantia()" class="opcion">
+            <img src="assets/opciones.svg">
+        </div>
+
+        <div (click)="eliminar()" class="eliminar">
+            <img src="assets/delete.svg">
+        </div>
+    </div>
+</div>
+
+<div *ngIf="showGarantia" class="garantia item-content animate__animated animate__fadeIn">
+    <p>Garantia <span *ngIf="anios != 0">({{anios}} <span *ngIf="anios > 1">años</span><span
+                *ngIf="anios == 1">año</span>): ${{resultadoGarantia}}</span></p>
+
+    <div *ngIf="!item.adicional" class="cantidad">
+        <app-cantidad #cantidad (onCantidad)="calcularGarantia($event)"></app-cantidad>
+        <img (click)="setAdicional()" class="ok" src="assets/ok.svg">
+    </div>
+</div>
+
+<ng-template #divServicio>
+    <div class="item-content animate__animated animate__fadeIn">
+        <p><span>{{item.servicio?.descripcion}}</span> - {{item.servicio?.tipo}}</p>
+
+
+        <div class="acciones">
+            <p class="monto">$ {{item.servicio?.montoBase}}</p>
+            <div (click)="mostrarCargo()" class="opcion">
+                <img src="assets/opciones.svg">
+            </div>
+            <div (click)="eliminar()" class="eliminar">
+                <img src="assets/delete.svg">
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="showCargo" class="cargo item-content animate__animated animate__fadeIn">
+        <div class="cargoSoporte">
+            <p>Cargo por soporte: $</p>
+            <p *ngIf="bloquearCargo" class="animate__animated animate__fadeIn">{{cargoSoporte}}</p>
+            <input *ngIf="!bloquearCargo" class="inputCargo" [(ngModel)]="cargoSoporte"
+                (keypress)="validarFormato($event)" [maxLength]="5">
+        </div>
+
+        <img *ngIf="!item.adicional" (click)="setCargo()" class="ok" style="margin-right: 0.5em;" src="assets/ok.svg">
+    </div>
+</ng-template>
