@@ -1,12 +1,28 @@
-.card-cliente{
-    background-color: gray;
-    border-radius: 2em;
-    width: 40vw;
-    height: 70vh;
-    padding: 5vh 5vh;
+.card-cliente {
+  background-color: gray;
+  border-radius: 2em;
+  width: 40vw;
+  height: 70vh;
+  padding: 5vh 5vh;
 }
 
-hr{
-    color: white;
-    margin:4vh 0;
+hr {
+  color: white;
+  margin: 4vh 0;
+}
+
+.servicio-activo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 1.5em;
+  background-color: forestgreen;
+  border-radius: 1em;
+  border: 1px solid whitesmoke;
+  cursor: pointer;
+}
+
+.servicio-activo p {
+  color: whitesmoke;
 }

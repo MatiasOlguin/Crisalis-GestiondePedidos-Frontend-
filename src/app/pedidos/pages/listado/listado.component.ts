@@ -19,8 +19,16 @@ export class ListadoComponent implements OnInit {
     });
   }
 
-  borrar(id : any): void {
-    this.pedidosService.borrarPedido(id).subscribe((resp) =>
+  cancelar(id : any): void {
+    this.pedidosService.actualizarEstado(id,'CANCELADO').subscribe((resp) =>
+      this.pedidosService.getPedidos().subscribe((pedidos) => {
+        this.pedidos = pedidos;
+      })
+    );
+  }
+
+  aceptar(id : any): void {
+    this.pedidosService.actualizarEstado(id,'ACEPTADO').subscribe((resp) =>
       this.pedidosService.getPedidos().subscribe((pedidos) => {
         this.pedidos = pedidos;
       })

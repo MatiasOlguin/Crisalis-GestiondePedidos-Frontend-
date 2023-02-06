@@ -2,7 +2,7 @@ import { ClientesService } from './../../clientes.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs';
-import { Cliente } from '../../cliente';
+import { Cliente } from '../../interfaces/cliente';
 
 @Component({
   selector: 'app-cliente',

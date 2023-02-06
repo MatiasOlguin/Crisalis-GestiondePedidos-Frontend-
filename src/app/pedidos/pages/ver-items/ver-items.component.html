@@ -24,7 +24,11 @@
         </div>
 
         <div class="container-items">
-            <app-item (onEliminar)="eliminarItem($event)" *ngFor="let item of getPedido().items" [item]="item"></app-item>
+            <app-item
+            
+            (onEliminar)="eliminarItem($event)"
+            *ngFor="let item of getPedido().items"
+            [item]="item"></app-item>
         </div>
         
         <div class="resultados">
@@ -39,6 +43,10 @@
             <div *ngIf="getCargoSoporte() != 0" class="descuento animate__animated animate__fadeIn">
                 <p>+ Cargo Soporte:</p>
                 <p>${{getCargoSoporte()}}</p>
+            </div>
+            <div *ngIf="getGarantia() != 0" class="descuento animate__animated animate__fadeIn">
+                <p>+ Garantia:</p>
+                <p>${{getGarantia()}}</p>
             </div>
             <div class="total">
                 <p>Total:</p>

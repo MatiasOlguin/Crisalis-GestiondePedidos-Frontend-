@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Cliente } from 'src/app/clientes/cliente';
+import { Cliente } from 'src/app/clientes/interfaces/cliente';
 
 @Component({
   selector: 'app-error-page',

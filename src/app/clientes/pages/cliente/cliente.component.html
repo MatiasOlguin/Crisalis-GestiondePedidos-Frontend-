@@ -3,15 +3,20 @@
 
 <ng-template #divCliente>
     <div class="card-cliente animate__animated animate__fadeIn">
-        <div style="display: flex; flex-direction: row-reverse;"><img
-            style="width: 2em;"
-            routerLink="/clientes/listado" class="ver" src="assets/eliminar.svg" /></div>
+        <div style="display: flex; flex-direction: row-reverse;"><img style="width: 2em;" routerLink="/clientes/listado"
+                class="ver" src="assets/eliminar.svg" /></div>
         <h1> {{ verCliente.apellido }}</h1>
         <h3> {{ verCliente.nombre }}</h3>
         <hr>
         <p>DNI : {{ verCliente.dni}}</p>
         <p>Creado : {{ verCliente.createAt | date: 'd/M/yyyy' }}</p>
-        <p>Pedidos: -</p>
-        <p>Servicios Activos: -</p>
+
+        <p *ngIf="verCliente.servicios.length !== 0; else spanElse">Servicios Activos: </p>
+        <div *ngFor="let servicioAct of verCliente.servicios" class="servicio-activo">
+            <p>
+                {{servicioAct.servicio.descripcion}} - {{servicioAct.servicio.tipo}} ({{servicioAct.createAt | date: 'd/M/yyyy'}})
+            </p>
+        </div>
+        <ng-template #spanElse><span>Servicios Activos: -</span></ng-template>
     </div>
 </ng-template>

@@ -10,10 +10,9 @@ import { Item } from '../../interfaces/item';
 export class ItemComponent {
   @Input() item!: Item;
   @Output() onEliminar: EventEmitter<Item> = new EventEmitter();
-
+  resultadoGarantia: number = 0;
   showGarantia: boolean = false;
   showCargo: boolean = false;
-  resultadoGarantia: number = 0;
   cargoSoporte!: any;
   bloquearCargo: boolean = false;
   anios: number = 0;
@@ -33,14 +32,15 @@ export class ItemComponent {
   }
 
   mostrarCargo() {
-    this.showCargo = !this.showCargo ? true : false;
-    this.cargoSoporte = 0;
+    if (!this.bloquearCargo) {
+      this.showCargo = !this.showCargo ? true : false;
+      this.cargoSoporte = 0;
+    }
   }
 
   calcularGarantia(anios: number) {
     if (this.item.producto) {
-      this.resultadoGarantia =
-        this.item.producto.montoBase * this.item.cantidad * 0.02 * anios;
+      this.resultadoGarantia = (this.item.total || 0) * 0.02 * anios;
       this.anios = anios;
     } else return;
   }
@@ -48,18 +48,7 @@ export class ItemComponent {
   setAdicional() {
     if (this.item.producto && this.anios != 0) {
       this.item.adicional = this.resultadoGarantia;
-      if (this.item.subtotal) this.item.subtotal += this.resultadoGarantia;
-      if (this.item.IVA) this.item.IVA += this.resultadoGarantia * 0.21;
-      if (this.item.IIBB) this.item.IIBB += this.resultadoGarantia * 0.035;
-      if (this.item.total)
-        this.item.total +=
-          this.resultadoGarantia +
-          this.resultadoGarantia * 0.21 +
-          this.resultadoGarantia * 0.035;
       this.item.aniosGarantia = this.anios;
-
-      console.log(this.item);
-
       this.pedidosService.actualizarValores();
     }
   }
@@ -67,7 +56,6 @@ export class ItemComponent {
   setCargo() {
     if (this.item.servicio && this.cargoSoporte != 0) {
       this.item.adicional = parseInt(this.cargoSoporte);
-      if (this.item.subtotal) this.item.subtotal += parseInt(this.cargoSoporte);
       if (this.item.total) this.item.total += parseInt(this.cargoSoporte);
     }
     this.bloquearCargo = true;

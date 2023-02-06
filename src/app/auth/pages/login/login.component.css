@@ -90,3 +90,25 @@
     background-position: -20em;
     transition: all 2s;
   }
+
+  .registrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 3vh;
+    width: 50%;
+    border: 1px solid #569be4;
+    border-radius: 1em;
+    margin: 1em 0;
+    cursor: pointer;
+  }
+
+  .registrar p{
+    white-space:nowrap;
+    color: #569be4;
+  }
+
+  .error-validacion{
+    margin-top: 1em;
+    color: red;
+  }

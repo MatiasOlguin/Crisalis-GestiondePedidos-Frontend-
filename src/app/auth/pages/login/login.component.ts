@@ -1,36 +1,30 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AuthService } from './../../auth.service';
 import { Component } from '@angular/core';
+import { Usuario } from '../../interfaces/usuario';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-
 export class LoginComponent {
-  username: string = '';
-  password: string = '';
-  objeto: any;
+  usuario: Usuario = { id: 0, username: '', password: '' };
+  usuarioInvalido: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
-  clicked(){
-    this.makeRequest();
-    console.log(this.objeto);
-  }
-
-  makeRequest() {
-    const basicAuth =
-      'Basic ' + window.btoa(this.username + ':' + this.password);
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        Authorization: basicAuth,
-      }),
-    };
-
-    return this.http
-      .get('http://localhost:8080/clientes', httpOptions)
-      .subscribe((resp) => (this.objeto = resp));
+  login() {
+    this.authService.login(this.usuario).subscribe({
+      next: (resp) => {
+        localStorage.setItem('id', resp.id.toString());
+      },
+      error: (e) => {
+        this.usuarioInvalido = true;
+      },
+      complete: () => {
+        this.router.navigate(['/clientes/listado']);
+      },
+    });
   }
 }

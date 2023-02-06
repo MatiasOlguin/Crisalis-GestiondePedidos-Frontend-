@@ -5,7 +5,8 @@ import { Producto } from './../../../productos/producto';
 import { Servicio } from './../../../servicios/servicio';
 import { ProductosService } from './../../../productos/productos.service';
 import { PedidosService } from './../../pedidos.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
+import { ItemComponent } from '../../components/item/item.component';
 
 @Component({
   selector: 'app-ver-items',
@@ -17,6 +18,7 @@ export class VerItemsComponent implements OnInit {
   servicios: Servicio[] = [];
   showProductos: boolean = true;
   showServicios: boolean = false;
+  @ViewChildren(ItemComponent) itemComponents!: QueryList<ItemComponent>;
 
   constructor(
     private pedidosService: PedidosService,
@@ -34,7 +36,7 @@ export class VerItemsComponent implements OnInit {
       .getServicios()
       .subscribe((resp) => (this.servicios = resp));
 
-    if(this.pedidosService.pedido.cliente.id == 0){
+    if (this.pedidosService.pedido.cliente.id == 0) {
       this.router.navigate(['pedidos/seleccionar-cliente']);
     }
   }
@@ -63,6 +65,10 @@ export class VerItemsComponent implements OnInit {
     return this.pedidosService.cargoSoporte;
   }
 
+  getGarantia() {
+    return this.pedidosService.garantia;
+  }
+
   clickProductos() {
     this.showProductos = true;
     this.showServicios = false;
@@ -73,27 +79,28 @@ export class VerItemsComponent implements OnInit {
     this.showServicios = true;
   }
 
+  actualizarResultadoGarantia(){
+    this.itemComponents.forEach(itemComponent => {
+      if(itemComponent.showGarantia)
+        itemComponent.mostrarGarantia();
+    })
+  }
+
   agregarItem(nuevoItem: Item): void {
     if (nuevoItem !== undefined) {
       if (nuevoItem.producto) {
-        this.pedidosService.subtotal += nuevoItem.subtotal || 0;
-        this.pedidosService.impuestos +=
-          (nuevoItem.IVA || 0) + (nuevoItem.IIBB || 0);
-        this.pedidosService.total += nuevoItem.total || 0;
-
         let item: any = this.pedidosService.pedido.items.find(
           (item) =>
             item.producto?.id == nuevoItem.producto?.id &&
             item.adicional == null
         );
-
         let producto = this.productos.find(
           (producto) => producto.id == nuevoItem.producto?.id
         );
-
         if (item) {
           item.cantidad += nuevoItem.cantidad;
           producto!.cantidad -= nuevoItem.cantidad;
+          this.actualizarResultadoGarantia();
         } else {
           this.pedidosService.pedido.items.push(nuevoItem);
           let producto = this.productos.find(
@@ -103,12 +110,10 @@ export class VerItemsComponent implements OnInit {
         }
       } else {
         this.pedidosService.pedido.items.push(nuevoItem);
-
-        this.pedidosService.subtotal += nuevoItem.subtotal || 0;
-        this.pedidosService.impuestos +=
-          (nuevoItem.IIBB || 0) + (nuevoItem.IVA || 0);
-        this.pedidosService.total += nuevoItem.total || 0;
       }
+      this.pedidosService.actualizarValores();
+      
+      console.log(this.pedidosService.pedido.items);
     }
   }
 
@@ -132,10 +137,12 @@ export class VerItemsComponent implements OnInit {
 
   enviarPedido() {
     console.log(this.pedidosService.pedido);
-    this.pedidosService.agregarPedido().subscribe((resp) => {
-      console.log(resp);
-      this.router.navigate(['/pedidos/listado']);
-      this.pedidosService.reiniciarPedido();
-    });
+    if (this.pedidosService.pedido.items.length !== 0) {
+      this.pedidosService.agregarPedido().subscribe((resp) => {
+        console.log(resp);
+        this.router.navigate(['/pedidos/listado']);
+        this.pedidosService.reiniciarPedido();
+      });
+    }
   }
 }

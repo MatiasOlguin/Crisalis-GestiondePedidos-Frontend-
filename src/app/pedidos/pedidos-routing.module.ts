@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { HomeComponent } from './pages/home/home.component';
 import { ListadoComponent } from './pages/listado/listado.component';
 import { SeleccionarComponent } from './pages/seleccionar/seleccionar.component';
+import { PedidoComponent } from './pages/pedido/pedido.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
       {
         path:'ver-items',
         component:VerItemsComponent
+      },
+      {
+        path:':id',
+        component:PedidoComponent
       },
       {
         path:'**',

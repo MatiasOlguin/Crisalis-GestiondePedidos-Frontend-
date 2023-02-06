@@ -12,11 +12,13 @@ import { OfertaProductoComponent } from './components/oferta-producto/oferta-pro
 import { OfertaServicioComponent } from './components/oferta-servicio/oferta-servicio.component';
 import { ItemComponent } from './components/item/item.component';
 import { CantidadComponent } from './components/cantidad/cantidad.component';
+import { PedidoComponent } from './pages/pedido/pedido.component';
 
 @NgModule({
   declarations: [
     ListadoComponent,
     HomeComponent,
+    PedidoComponent,
     SeleccionarComponent,
     VerItemsComponent,
     StockComponent,

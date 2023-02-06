@@ -12,6 +12,7 @@ export class PedidosService {
   private _total: number = 0;
   private _impuestos: number = 0;
   private _cargoSoporte: number = 0;
+  private _garantia: number = 0;
   private _pedido: Pedido = {
     items: [],
     cliente: { id: 0 },
@@ -44,7 +45,16 @@ export class PedidosService {
   actualizarSubtotal() {
     this._subtotal = 0;
     for (let i = 0; i < this.pedido.items.length; i++) {
-      this._subtotal += this.pedido.items[i].subtotal || 0;
+      if (this.pedido.items[i].producto) {
+        this.pedido.items[i].subtotal =
+          (this.pedido.items[i].producto?.montoBase || 0) *
+          this.pedido.items[i].cantidad;
+        this._subtotal += this.pedido.items[i].subtotal || 0;
+      } else {
+        this.pedido.items[i].subtotal =
+          this.pedido.items[i].servicio?.montoBase || 0;
+        this._subtotal += this.pedido.items[i].subtotal;
+      }
     }
   }
 
@@ -59,7 +69,17 @@ export class PedidosService {
   actualizarTotal() {
     this._total = 0;
     for (let i = 0; i < this.pedido.items.length; i++) {
-      this._total += this.pedido.items[i].total || 0;
+      this.pedido.items[i].total =
+        (this.pedido.items[i].subtotal || 0) +
+        (this.pedido.items[i].iva || 0) +
+        (this.pedido.items[i].iibb || 0);
+
+      if (this.pedido.items[i].adicional) {
+        if (this.pedido.items[i].total) {
+          this.pedido.items[i].total += this.pedido.items[i].adicional || 0;
+        }
+      }
+      this._total += this.pedido.items[i].total;
     }
   }
 
@@ -74,8 +94,10 @@ export class PedidosService {
   actualizarImpuestos() {
     this._impuestos = 0;
     for (let i = 0; i < this.pedido.items.length; i++) {
+      this.pedido.items[i].iva = (this.pedido.items[i].subtotal || 0) * 0.21;
+      this.pedido.items[i].iibb = (this.pedido.items[i].subtotal || 0) * 0.035;
       this._impuestos +=
-        (this.pedido.items[i].IVA || 0) + (this.pedido.items[i].IIBB || 0);
+        (this.pedido.items[i].iva || 0) + (this.pedido.items[i].iibb || 0);
     }
   }
 
@@ -95,10 +117,27 @@ export class PedidosService {
     }
   }
 
+  get garantia(): number {
+    return this._garantia;
+  }
+
+  set garantia(garantia: number) {
+    this._garantia = garantia;
+  }
+
+  actualizarGarantia() {
+    this._garantia = 0;
+    for (let i = 0; i < this.pedido.items.length; i++) {
+      if (this.pedido.items[i].producto && this.pedido.items[i].adicional != 0)
+        this._garantia += this.pedido.items[i].adicional || 0;
+    }
+  }
+
   actualizarValores() {
-    this.actualizarCargoSoporte();
-    this.actualizarImpuestos();
     this.actualizarSubtotal();
+    this.actualizarImpuestos();
+    this.actualizarCargoSoporte();
+    this.actualizarGarantia();
     this.actualizarTotal();
   }
 
@@ -114,9 +153,8 @@ export class PedidosService {
     return this.http.post<Pedido>(this.apiUrl, this._pedido);
   }
 
-  actualizarPedido(pedido: Pedido): Observable<Pedido> {
-    let url = `${this.apiUrl}/${pedido.id}`;
-    return this.http.put<Pedido>(url, pedido);
+  actualizarEstado(id: number, estado : string) {
+    return this.http.put<any>(`${this.apiUrl}/${id}/${estado}`, null);
   }
 
   borrarPedido(id: number): Observable<any> {
@@ -124,7 +162,8 @@ export class PedidosService {
   }
 
   reiniciarPedido() {
-    this.cargoSoporte = 0;
+    this._cargoSoporte = 0;
+    this._garantia= 0;
     this._impuestos = 0;
     this._subtotal = 0;
     this._total = 0;

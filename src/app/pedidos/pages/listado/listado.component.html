@@ -1,4 +1,4 @@
-<div class="contenedor-tabla animate__animated animate__fadeIn">
+<div *ngIf="pedidos" class="contenedor-tabla animate__animated animate__fadeIn">
     <table [cellSpacing]="0">
         <thead>
             <tr>
@@ -17,15 +17,23 @@
                 <td>{{ pedido.id }}</td>
                 <td>{{ pedido.createAt | date: 'd/M/yyyy' }}</td>
                 <td>{{ pedido.cliente.nombreCompleto}}</td>
-                <td>{{ pedido.estado }}</td>
+                <td *ngIf="pedido.estado == 'En revisión'" style="color: rgb(65, 65, 245); font-weight: bolder;" >{{ pedido.estado }}</td>
+                <td *ngIf="pedido.estado == 'Cancelado'" style="color: red; font-weight: bolder;" >{{ pedido.estado }}</td>
+                <td *ngIf="pedido.estado == 'Aceptado'" style="color: green; font-weight: bolder;" >{{ pedido.estado }}</td>
                 <td>{{ pedido.items.length }}</td>
                 <td>-</td>
                 <td>${{ pedido.total}}</td>
                 <td class="accion">
                     <div class="acciones">
                         <img [routerLink]="['/pedidos',pedido.id]" class="ver" src="assets/ojo.svg" />
-                        <img [routerLink]="['/pedidos/editar',pedido.id]" class="ver" src="assets/editar.svg" />
-                        <img (click)="borrar(pedido.id)" class="ver" src="assets/eliminar.svg" />
+                        <img *ngIf="pedido.estado != 'Cancelado' && pedido.estado != 'Aceptado'"
+                        [routerLink]="['/pedidos/editar',pedido.id]"
+                        (click)="aceptar(pedido.id)"
+                        class="ver" src="assets/aceptar.svg" />
+
+                        <img *ngIf="pedido.estado == 'En revisión'"
+                        (click)="cancelar(pedido.id)"
+                        class="ver" src="assets/eliminar.svg" />
                     </div>
                 </td>
             </tr>

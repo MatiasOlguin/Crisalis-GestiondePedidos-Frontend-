@@ -1,0 +1,18 @@
+.opciones{
+    display: flex;
+    justify-content: space-between;
+    width: 80vw;
+    height: 11vh;
+    align-items: center;
+}
+
+.agregar{
+    width: 2.3em;
+    cursor: pointer;
+}
+
+.logout{
+    width: 2em;
+    margin-right: 2em;
+    cursor: pointer;
+}

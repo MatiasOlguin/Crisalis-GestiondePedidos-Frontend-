@@ -4,12 +4,12 @@ import { Producto } from 'src/app/productos/producto';
 export interface Item {
   id?: number;
   cantidad: number;
-  producto?: Producto;
-  servicio?: Servicio;
-  IVA?: number;
-  IIBB?: number;
-  adicional?: number;
-  aniosGarantia?: number;
-  subtotal?: number;
-  total?: number;
+  producto: Producto | null;
+  servicio: Servicio | null;
+  iva: number;
+  iibb: number;
+  adicional: number | null;
+  aniosGarantia: number | null;
+  subtotal: number;
+  total: number;
 }

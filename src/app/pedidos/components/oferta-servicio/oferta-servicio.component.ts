@@ -48,11 +48,14 @@ export class OfertaServicioComponent implements OnInit, OnDestroy {
   crearItem(): Item | undefined {
     if (!this.clicked) {
       this.item = {
+        producto: null,
+        adicional:null,
+        aniosGarantia: null,
         servicio: this.servicio,
         cantidad: 1,
         subtotal: this.servicio.montoBase,
-        IVA: this.servicio.montoBase * 0.21,
-        IIBB: this.servicio.montoBase * 0.035,
+        iva: this.servicio.montoBase * 0.21,
+        iibb: this.servicio.montoBase * 0.035,
         total:
           this.servicio.montoBase +
           this.servicio.montoBase * 0.21 +

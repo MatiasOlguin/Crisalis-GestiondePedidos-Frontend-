@@ -1,25 +1,58 @@
-<!-- <div *ngIf="!verEmpresa; else divEmpresa">
-</div>
+<div *ngIf="pedido" class="contenedor-tabla animate__animated animate__fadeIn">
+    <div class="titulo"><h1 class="nombre-cliente">Cliente: {{pedido.cliente.nombreCompleto}}</h1></div>
+    <table [cellSpacing]="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Descripcion</th>
+                <th>IVA</th>
+                <th>IIBB</th>
+                <th>Cantidad</th>
+                <th>Adicional</th>
+                <th>Garantia (años)</th>
+                <th>Subtotal</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of pedido.items">
 
-<ng-template #divEmpresa>
-    <div class="card animate__animated animate__fadeIn">
-        <div style="display: flex; flex-direction: row-reverse;"><img style="width: 2em;" routerLink="/empresas/listado"
-                class="ver" src="assets/eliminar.svg" /></div>
-        <h1> {{ verEmpresa.razonSocial }}</h1>
-        <h3> {{ verEmpresa.inicioActividades | date: 'd/M/yyyy' }}</h3>
-        <hr>
-        <p>CUIT : {{ verEmpresa.cuit}}</p>
-        <p>Creado : {{ verEmpresa.createAt | date: 'd/M/yyyy' }}</p>
-        <p>Empleados:</p>
-        <div *ngIf="verEmpresa.empleados.length == 0; else divLista">La empresa no tiene empleados registrados</div>
+                <td *ngIf="item.producto; else tdIdServicio"> {{ item.producto.id}}</td>
+                <ng-template #tdIdServicio>
+                    <td> {{item.servicio?.id}}</td>
+                </ng-template>
 
-        <ng-template #divLista>
-            <div *ngFor="let empleado of verEmpresa.empleados">
-                <div style="display: flex; align-items: center;">
-                    <p>{{empleado.nombreCompleto}}</p>
-                    <img [routerLink]="['/clientes',empleado.id]" class="ver" src="assets/ojo.svg" />
-                </div>
-            </div>
-        </ng-template>
+                <td *ngIf="item.producto; else tdDescServicio"> {{ item.producto.descripcion}} - {{
+                    item.producto.marca}} {{ item.producto.modelo}}</td>
+                <ng-template #tdDescServicio>
+                    <td>{{item.servicio?.descripcion}} - {{item.servicio?.tipo}}</td>
+                </ng-template>
+
+                <td>${{item.iva }}</td>
+                <td>${{item.iibb}}</td>
+                <td>{{item.cantidad}}</td>
+
+
+                <td *ngIf="item.adicional; else vacio">${{item.adicional}}</td>
+
+                <ng-template #vacio>
+                    <td>-</td>
+                </ng-template>
+
+                <ng-container *ngIf="item.aniosGarantia; else tdVacio">
+                    <td>{{item.aniosGarantia}}</td>
+                </ng-container>
+                <ng-template #tdVacio>
+                    <td>-</td>
+                </ng-template>
+
+                <td> ${{item.subtotal}}</td>
+                <td> ${{item.total}}</td>
+            </tr>
+    </table>
+    <div class="total-eliminar">
+        <p class="total">Total: ${{pedido.total}}</p>
+        <div (click)="eliminar()" class="eliminar"><p>Eliminar</p></div>
     </div>
-</ng-template> -->
+
+</div>

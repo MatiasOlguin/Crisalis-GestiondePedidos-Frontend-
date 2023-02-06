@@ -1,10 +1,7 @@
 <div class="container-home">
     <app-sidenav></app-sidenav>
     <main>
-        <div class="opciones animate__animated animate__fadeIn">
-            <img routerLink="/empresas/agregar" class="agregar" src="assets/agregar.svg" alt="">
-            <img class="logout" src="assets/logout.svg">
-        </div>
+        <app-opciones [link]="'/empresas/agregar'"></app-opciones>
         <router-outlet></router-outlet>
     </main>
 </div>

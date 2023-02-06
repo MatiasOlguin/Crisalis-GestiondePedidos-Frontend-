@@ -1,9 +1,8 @@
 import { ClientesService } from './../../clientes.service';
 import { Component, OnInit } from '@angular/core';
-import { Cliente } from '../../cliente';
+import { Cliente } from '../../interfaces/cliente';
 import { ActivatedRoute, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { Empresa } from 'src/app/empresas/empresa';
 
 @Component({
   selector: 'app-agregar',
@@ -14,7 +13,8 @@ export class AgregarComponent implements OnInit {
   cliente: Cliente = {
     nombre: '',
     apellido: '',
-    dni: ''
+    dni: '',
+    servicios:[]
   };
 
   constructor(

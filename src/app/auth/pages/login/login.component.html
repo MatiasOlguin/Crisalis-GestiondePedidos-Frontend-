@@ -1,30 +1,32 @@
 <div class="full-width">
 
-<div class="container">
+  <div class="container animate__animated animate__fadeIn">
     <div class="bienvenido">
       <img src="assets/logo.svg">
       <h3>Bienvenido</h3>
       <h1>Inicie sesión</h1>
     </div>
-  
-  
-    <form>
+
+    <div *ngIf="usuarioInvalido" class="error-validacion">Usuario y/o contraseña invalidos.</div>
+
+    <form (ngSubmit)="login()" #form="ngForm">
       <div class="data">
-        <label>USUARIO</label>
-        <input [(ngModel)]="this.username" type="text" name="username" required autofocus autocomplete="off"/>
+        <label for="username">USUARIO</label>
+        <input type="text" name="username" [(ngModel)]="usuario.username" autocomplete="off">
       </div>
+
       <div class="data">
-        <label>CONTRASEÑA</label>
-        <input [(ngModel)]="this.password" type="password" name="password" required/>
+        <label for="password">CONTRASEÑA</label>
+        <input type="password" name="password" [(ngModel)]="usuario.password" >
       </div>
-  
+
       <div class="btn">
-        <button (click)="clicked()">INICIAR SESIÓN</button>
+        <button type="submit">INICIAR SESIÓN</button>
       </div>
     </form>
 
-    <div class="registrar">
-        <button>Registrate</button>
+    <div [routerLink]="['/auth/registro']" class="registrar">
+      <p>No tenes cuenta? Registrate.</p>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-<div class="contenedor-tabla animate__animated animate__fadeIn">
+<div *ngIf="clientes !== null" class="contenedor-tabla animate__animated animate__fadeIn">
     <table [cellSpacing]="0">
         <thead>
             <tr>
@@ -16,13 +16,13 @@
                 <td>{{ cliente.id }}</td>
                 <td>{{ cliente.nombre }}</td>
                 <td>{{ cliente.apellido }}</td>
-                <td>{{ cliente.dni }}</td>
+                <td>{{ cliente.dni | number }}</td>
                 <td>{{ cliente.createAt | date: 'd/M/yyyy' }}</td>
                 <td style="cursor: pointer;" 
                 [routerLink]="['/empresas',cliente.empresa.id]" 
                 *ngIf="cliente.empresa; else templateElse">{{cliente.empresa.razonSocial}}</td>
                 <ng-template #templateElse>
-                    <td>No aplica</td>
+                    <td>-</td>
                 </ng-template>
 
                 <td class="accion">

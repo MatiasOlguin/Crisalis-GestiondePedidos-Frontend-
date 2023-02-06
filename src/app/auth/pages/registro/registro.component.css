@@ -1,0 +1,98 @@
+.full-width{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(45deg, #56d8e4 10%, #0d00ff 90%);
+    color: black;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 40%;
+    padding: 2em;
+    background: white;
+    box-shadow: 0 0 2em rgba(0, 0, 0, 0.5);
+  }
+  
+  .bienvenido {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .bienvenido img {
+    width: 20%;
+  }
+  
+  .bienvenido h3 {
+    color: gray;
+    font-weight: lighter;
+    margin-top: 1em;
+  }
+  .bienvenido h1 {
+    font-size: 2.5em;
+    font-weight: 600;
+    line-height: 1em;
+    white-space: nowrap;
+    margin: 0.3em 0;
+  }
+  
+  form{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+  }
+  
+  form div {
+    margin-top: 1em;
+  }
+  form .data label {
+    font-size: 1.1em;
+  }
+  
+  form .data input {
+    height: 2em;
+    width: 100%;
+    font-size: 1.1em;
+    padding-left: 0.5em;
+    border: 0.13em solid silver;
+  }
+  
+  form .data input:focus {
+    border-color: #56d8e4;
+    border-bottom-width: 0.25em;
+  }
+  
+  .btn {
+    margin-top: 2em;
+    display: flex;
+    justify-content: center;
+    height: 2em;
+    width: 100%;
+  }
+  
+  .btn button {
+    color: white;
+    width: 20em;
+    height: 100%;
+    border: none;
+    background-image: linear-gradient(to right, #0d00ff, #56d8e4, #0d00ff);
+    background-size: 40em;
+    transition: all 2s;
+    cursor: pointer;
+  }
+  
+  .btn button:hover {
+    background-position: -20em;
+    transition: all 2s;
+  }
+
+  .error-validacion{
+    margin-top: 1em;
+    color: red;
+  }

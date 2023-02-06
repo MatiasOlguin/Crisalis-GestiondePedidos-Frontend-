@@ -1,6 +1,6 @@
 import { ClientesService } from './../../clientes.service';
 import { Component, OnInit } from '@angular/core';
-import { Cliente } from '../../cliente';
+import { Cliente } from '../../interfaces/cliente';
 import { Router } from '@angular/router';
 import { HttpHeaders } from '@angular/common/http';
 

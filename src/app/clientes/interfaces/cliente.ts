@@ -1,3 +1,5 @@
+import { ServicioActivo } from './servicio-activo';
+
 export interface Cliente {
   id?: number;
   nombre: string;
@@ -7,5 +9,6 @@ export interface Cliente {
   empresa?: {
     id: number,
     razonSocial: string
-  }
+  };
+  servicios : ServicioActivo[];
 }

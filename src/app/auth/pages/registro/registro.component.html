@@ -1,1 +1,27 @@
-<p>registro works!</p>
+<div class="full-width">
+
+    <div class="container animate__animated animate__fadeIn">
+      <div class="bienvenido">
+        <img src="assets/logo.svg">
+        <h1>Registrate</h1>
+      </div>
+  
+      <div *ngIf="usuarioInvalido" class="error-validacion">Nombre de usuario en uso.</div>
+  
+      <form (ngSubmit)="registro()" #form="ngForm">
+        <div class="data">
+          <label for="username">NUEVO USUARIO</label>
+          <input type="text" name="username" [(ngModel)]="usuario.username" autocomplete="off">
+        </div>
+  
+        <div class="data">
+          <label for="password">NUEVA CONTRASEÑA</label>
+          <input type="password" name="password" [(ngModel)]="usuario.password" >
+        </div>
+  
+        <div class="btn">
+          <button type="submit">REGISTRATE</button>
+        </div>
+      </form>
+    </div>
+  </div>

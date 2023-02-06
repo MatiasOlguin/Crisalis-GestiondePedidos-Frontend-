@@ -46,10 +46,13 @@ export class OfertaProductoComponent implements OnInit, OnDestroy {
     if (this.hijo.stock !== 0 && this.producto.cantidad !== 0) {
       this.item = {
         producto: this.producto,
+        servicio: null,
+        adicional: null,
+        aniosGarantia: null,
         cantidad: this.hijo.stock,
         subtotal: this.producto.montoBase * this.hijo.stock,
-        IVA: this.producto.montoBase * this.hijo.stock * 0.21,
-        IIBB: this.producto.montoBase * this.hijo.stock * 0.035,
+        iva: this.producto.montoBase * this.hijo.stock * 0.21,
+        iibb: this.producto.montoBase * this.hijo.stock * 0.035,
         total:
           this.producto.montoBase * this.hijo.stock +
           this.producto.montoBase * this.hijo.stock * 0.21 +
